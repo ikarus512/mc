@@ -1,0 +1,7 @@
+TODO
+
+
+2015-01-01 (nb)
+
+Have the DHT11 powered from a data pin and turning it on and off to save power.
+

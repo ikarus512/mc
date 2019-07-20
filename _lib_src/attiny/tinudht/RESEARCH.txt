@@ -1,0 +1,36 @@
+RESEARCH
+
+
+---- DHT11 Datasheets ----
+
+http://www.micro4you.com/files/sensor/DHT11.pdf
+http://www.oddwires.com/content/DHT11.pdf
+http://www.sunrom.com/media/files/p/104/3732-datasheet.pdf
+
+
+---- Arduino Libraries ----
+
+Class for DHTxx sensors
+http://playground.arduino.cc/Main/DHTLib
+The DHT11, DHT21 and DHT22 are relative cheap sensors for measuring temperature and humidity. This article describes a library for reading both values from these sensors. 
+
+A DHT11 Class for Arduino
+http://playground.arduino.cc/Main/DHT11Lib
+The DHT11 is a relatively cheap sensor for measuring temperature and humidity. This article describes a small library for reading both from the sensor. The DHT22 is similar to the DHT11 and has greater accuracy.
+
+Adafruit TinyDHT
+https://github.com/adafruit/TinyDHT
+This is an Arduino library for the Adafruit Trinket and Gemma mini microcontrollers for the DHT series of low cost temperature/humidity sensors. The library returns integer values to save space on the memory constrained ATTiny85 by not requiring the floating point library.  
+
+
+---- Projects ----
+
+ATtiny Wireless Weather Station Remote Outdoor Unit
+http://buildthings.wordpress.com/attiny-wireless-weather-station
+The Experiment: ATtiny Based Wireless Weather Station. Build a 433Mhz wireless weather station remote outdoor unit around an Atmel ATtiny85 micro-controller, with the following sensors, Anemometer, Wind vane, Temperature, Rain gauge plus Solar battery charger.
+
+DHT11 on ATtiny85
+http://projectsfromtech.blogspot.com/2014/02/dht11-on-attiny85.html
+Recently I got my DHT11 temperature and humidity sensor working with my Arduino Mega2560. If you are interested in that, check it out HERE. However, while that was all well and good, I found it a bit impractical. While I may someday decide to create some sort of weather logger using the DHT11, it is unlikely that I would dedicate an entire Arduino to the task. Enter ATtiny85.
+
+

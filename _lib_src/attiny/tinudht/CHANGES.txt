@@ -1,0 +1,66 @@
+CHANGES
+
+
+2019-01-01 (nb)
+
+Bugfix: Changed the union TinuDHT - humidity and temperature are now uint8_t, added uint8_t padding to the structure.
+
+Renamed testing script tinudht_test2 to tinudht_test1 as it is the main testing script.
+
+Renamed testing script tinudht_test1 to tinudht_lcdddd1 as it is no longer used and maintained.
+
+Updated testing script.
+
+Improvements (speed and size) and fixes.
+- The struct TinuDHT changed to union. Added the buffer and the checksum.
+- Error codes updated. Algorithm fixed and improved, almost rewritten. Better timing.
+- Removed unneeded code and text.
+
+
+2018-12-31 (nb)
+
+Source code maintenance, added updated texts and files.
+
+
+2015-03-03 (nb)
+
+Updated README, added LICENSE. Updated use of DEBUGGING.
+
+
+2015-01-01 (nb)
+
+Added "tinudht_test2" project using OWOWOD. Code reformatting, removed some LCDDDD dependency. Updated text files, added TODO file.
+
+- Added new "tinudht_test2" sub-project that uses OWOWOD for output of the measurements.
+- Source code reformatting.
+- Removed LCDDDD debugging dependency in the library.
+- Updated text files, added TODO text file.
+
+
+2015-01-01 (nb)
+
+Renamed folder "tinudht_test" to "tinudht_test1" for consistency.
+
+
+2014-07-13 (nb)
+
+Fix in "tinudht.h" - inclusion handling.
+
+
+2014-07-08 (nb)
+
+Small improvements in "tinudht_test/main.c". Added more comments in the source code. Updated README.
+
+- Changes in "tinudht_test/main.c": the delay for DHT moved outside of the main loop.
+
+
+2014-07-08 (nb)
+
+Added the "RESEARCH.txt" file to the repository.
+
+
+2014-07-08 (nb)
+
+Files added to the repository.
+
+
