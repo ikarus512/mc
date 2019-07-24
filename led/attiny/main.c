@@ -10,6 +10,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include "cpufreq.h"
 
 // ====================================
 //                ATtiny
@@ -27,6 +28,24 @@
 #define LED_PORT PB4
 
 int main(void) {
+
+
+/*
+// ---- CPU Frequency Setup ----
+#if F_CPU == 1000000UL
+#pragma message "F_CPU=1MHZ"
+        CLKPR_SET(CLKPR_1MHZ);
+#elif F_CPU == 8000000UL
+#pragma message "F_CPU=8MHZ"
+        CLKPR_SET(CLKPR_8MHZ);
+#else
+#pragma message "F_CPU=????"
+#error "CPU frequency should be 1 MHz for DHT usage! (1 or 8 for ssd1306)"
+#endif
+*/
+
+
+
 
     // Set the LED port number as output.
     // The DDRB is the data direction for port B.
@@ -50,7 +69,7 @@ int main(void) {
         PORTB &= ~(1 << LED_PORT);
 
         // Wait a little.
-        _delay_ms(400);
+        _delay_ms(800);
 
         // Do it again ...
     }

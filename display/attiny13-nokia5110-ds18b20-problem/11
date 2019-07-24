@@ -1,0 +1,18 @@
+source ./1
+#if [ "$1" != "0" ];then exit; fi
+if [ ! -e $n.hex ];then exit; fi
+
+if [ 1 = 0 ];then #fix2
+lsusb
+dmesg | grep 16c0
+echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0777\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0660\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+#echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+sudo mv 45-USBasp.rules /etc/udev/rules.d/45-USBasp.rules
+sudo service udev restart
+fi
+
+sudo avrdude -c usbasp -p t$t -u -U                     flash:w:$n.hex
+ls -l *.hex
+rm -frv *.hex *.o *.elf

@@ -1,0 +1,11 @@
+n=t
+#t=13   ; mcu=attiny${t}a
+ t=2313 ; mcu=attiny${t}a
+
+clear
+rm -fr *.o *.elf *.hex
+avr-gcc -Wall -std=c99 -Os -mmcu=$mcu -c     $n.c   -o $n.o
+if [ ! -f /usr/lib/avr/lib/crttn${t}a.o ];then sudo cp -frv /usr/lib/avr/lib/avr25/crttn${t}a.o /usr/lib/avr/lib/; fi
+avr-gcc      -mmcu=$mcu        $n.o   -o $n.elf
+avr-objcopy -j .text -j .data -O ihex $n.elf    $n.hex
+avr-size -C --mcu=$mcu $n.elf
