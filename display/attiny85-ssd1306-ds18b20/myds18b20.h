@@ -90,10 +90,14 @@ delayMilliseconds(750+10); //wait for temperature conversion
   OneWireReset();       // Step 1. Initialization
   OneWireOutByte(0xcc); // Step 2. ROM command: "SKIP ROM".
   OneWireOutByte(0xbe); // Step 3. Function command: "Read scratchpad".
-  LowByte  = OneWireInByte(DS18B20_TEMP_PIN); //Get LowByte
-  HighByte = OneWireInByte(DS18B20_TEMP_PIN); //Get HighByte
 
-  return LowByte|(((uint16_t)HighByte)<<8);
+  //LowByte  = OneWireInByte(DS18B20_TEMP_PIN); //Get LowByte
+  //HighByte = OneWireInByte(DS18B20_TEMP_PIN); //Get HighByte
+  //return LowByte|(((uint16_t)HighByte)<<8);
+  uint16_t
+  t = OneWireInByte(DS18B20_TEMP_PIN);
+  t |= (uint16_t)OneWireInByte(DS18B20_TEMP_PIN) << 8;
+  return ((t >> 4) * 100 + ((t << 12) / 6553) * 10); // Return temperature * 100
 }
 
 #endif /* __MYDS18B20_H_201409271233__ */

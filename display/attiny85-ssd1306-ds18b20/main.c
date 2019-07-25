@@ -38,14 +38,15 @@
 #include "tinudht/tinudht.c"
 
 
-//#include "ds/ds18b20.h"
-//#include "ds/ds18b20.c"
-//#include "ds/onewire.h"
-//#include "ds/onewire.c"
-//#define DS18B20_PIN    PB4
+#include "ds/ds18b20.h"
+#include "ds/ds18b20.c"
+#include "ds/onewire.h"
+#include "ds/onewire.c"
+#define DS18B20_PIN    PB1
+
 #include "mydelay.h"
 #include "myio.h"
-#include "myds18b20.h"
+#include "myds18b20.h" // pin 4
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //                 ATtiny85
@@ -86,7 +87,7 @@ int main(void) {
 	ssd1306_clear(); // Clear the screen.
 
 	/* setup */
-	//DS18B20_init(DS18B20_PIN);
+	DS18B20_init(DS18B20_PIN);
         TempInit();
 
 
@@ -135,11 +136,11 @@ int main(void) {
 		} else {
 			ssd1306_setpos(0, 0); ssd1306tx_numdec(256-tinudht_result); // - error code negated
 		}
-//uint16_t t = DS18B20_read();
+uint16_t t1 = DS18B20_read();
+ssd1306_setpos(0*6, 1); ssd1306tx_numdec(t1);
+
 uint16_t t = TempGet();
-ssd1306_setpos(0*6, 1); ssd1306tx_numdec(t>>4); // - error code negated
-ssd1306_setpos(0*6, 2); ssd1306tx_numdec(t); // - error code negated
-ssd1306_setpos(0*6, 3); ssd1306tx_numdec(((t >> 4) * 100 + ((t << 12) / 6553) * 10)); // - error code negated
+ssd1306_setpos(0*6, 2); ssd1306tx_numdec(t);
 
 
 
