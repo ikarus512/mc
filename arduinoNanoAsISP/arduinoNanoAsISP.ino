@@ -1,9 +1,9 @@
 // Arduino Nano (as programmer):
-//   pin     GND
-//   pin 2 - RESET,      pin Vcc - Vcc
-//   pin 3 - SCK
-//   pin 4 - MISO
-//   pin 5 - MOSI
+//   pin GND- GND
+//   pin D2 - RESET,      pin Vcc - Vcc
+//   pin D3 - SCK
+//   pin D4 - MISO
+//   pin D5 - MOSI
 
 //
 // ATtiny85 (as target):
