@@ -93,22 +93,32 @@ TempGet(){
     ////Parsite mode: pull up
     //pinModeP(DS18B20_M_PORT,DS18B20_TEMP_PIN,MYIO_PIN_MODE_OUTPUT);
     //digitalWriteP(DS18B20_W_PORT,DS18B20_TEMP_PIN, MYIO_LOW);
-delayMilliseconds(2*750+10); //wait for temperature conversion
+delayMilliseconds(750+10); //wait for temperature conversion
 //  pinModeP(DS18B20_M_PORT,DS18B20_TEMP_PIN,MYIO_PIN_MODE_INPUT); while(OneWireInByte(DS18B20_TEMP_PIN)) Wait(0);
 
   OneWireReset();       // Step 1. Initialization
   OneWireOutByte(0xcc); // Step 2. ROM command: "SKIP ROM".
   OneWireOutByte(0xbe); // Step 3. Function command: "Read scratchpad".
 
-#define _VER 4
-#if _VER==4
+#define _VER 5
+#if _VER==5
+  uint8_t LowByte,HighByte;
+  temp_t res;
+  LowByte  = OneWireInByte(DS18B20_TEMP_PIN); //Get LowByte
+  HighByte = OneWireInByte(DS18B20_TEMP_PIN); //Get HighByte
+  res.t_int = (LowByte >> 4) | (HighByte<<4); // integer part * 100
+  //res.t_frac = (t & (uint16_t)0x000f) * 625 / 100; // fractional part * 10000 / 100
+  //res.t_frac = (uint16_t)((LowByte & 0x0f) >> 1) * 125 / 10; // fractional part * 1000 / 10
+  res.t_frac = (uint16_t)((LowByte & 0x0f)) * 125 / 20; // fractional part * 1000 / 10
+  return res;
+#elif _VER==4
   uint8_t LowByte,HighByte;
   LowByte  = OneWireInByte(DS18B20_TEMP_PIN); //Get LowByte
   HighByte = OneWireInByte(DS18B20_TEMP_PIN); //Get HighByte
   uint16_t t = LowByte|(((uint16_t)HighByte)<<8);
   uint16_t t_int = t>>4; // integer part * 100
   //uint16_t t_frac = (t & (uint16_t)0x000f) * 625 / 100; // fractional part * 10000 / 100
-  uint16_t t_frac = ((t>>1) & (uint16_t)0x000f) * 125 / 10; // fractional part * 1000 / 10
+  uint16_t t_frac = ((t>>1) & (uint16_t)0x07) * 125 / 10; // fractional part * 1000 / 10
   temp_t res;
   res.t_int = t_int;
   res.t_frac = t_frac;

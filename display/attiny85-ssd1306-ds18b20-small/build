@@ -13,8 +13,7 @@ defs=
 avr-gcc -g -Wall -std=c99 -Os -mmcu=$mcu -c $f.c -o $f.o -DF_CPU=$F_CPU -I. $defs || exit 1
 avr-gcc -g                    -mmcu=$mcu    $f.o -o $f.elf                        || exit 1
 avr-objcopy -j .text -j .data -O ihex $f.elf $f.hex                               || exit 1
-avr-size -C --mcu=$mcu $f.elf                                                     || exit 1
-
+avr-size -C --mcu=$mcu $f.elf | tee main.size.info                                || exit 1
 #exit
 
 ### open usb port to not let arduino reset during programming

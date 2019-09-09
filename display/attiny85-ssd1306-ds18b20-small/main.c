@@ -40,7 +40,7 @@
 #ifdef USE_MY_DS_SRC
   #include "mydelay.h"
   #include "myio.h"
-  #define MYDS_PIN           1
+  #define MYDS_PIN           1 // =PB1
   #include "myds18b20.h"
 #else
   #include "ds/ds18b20.h"
@@ -53,17 +53,23 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //                 ATtiny85
 //               +----------+   (-)--GND--
-//       (RST)---+ PB5  Vcc +---(+)--VCC--
+//       (RST)---+.PB5  Vcc +---(+)--VCC--
 // ---[OWOWOD]---+ PB3  PB2 +---[TWI/SCL]-
 // --------------+ PB4  PB1 +-------------
 // --------(-)---+ GND  PB0 +---[TWI/SDA]-
 //               +----------+
-//              Tinusaur Board
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// NOTE: If you want to reassign the SCL and SDA pins and the I2C address
-// do that in the library source code and recompile it so it will take affect.
-
-
+//
+// Display ssd1306:
+//  SDA = ATtiny85 PB0
+//  SCX = ATtiny85 PB2
+//  VDD = ATtiny85 VCC
+//  GND = ATtiny85 GND
+//
+// DS18B20:
+//  pin1 = pin3 = GND
+//  pin2 = ATtiny PB1
+//  pin2 = via R 220 Ohm to VCC 3V (or via R 4.7 kOhm to VCC 5V)
+// 
 // ----------------------------------------------------------------------------
 
 
@@ -113,18 +119,21 @@ int main(void) {
 		#ifdef USE_MY_DS_SRC
 		//ssd1306tx_numdec(TempGet());
 		temp_t t = TempGet();
+		// print integer part of t (0 <= t < 256)
 		ssd1306tx_numdec(t.t_int);
 		ssd1306_setpos(6*4, 0);
-		ssd1306tx_string(",");
+		ssd1306tx_string(".");
+		// print fractional part of t (0 <= fr < 100, it consists of 2 digits)
 		ssd1306_setpos(6*5, 0);
-		ssd1306tx_numdec(t.t_frac);
+		if (t.t_frac < 10) { ssd1306tx_char('0'); ssd1306_setpos(6*6, 0); ssd1306tx_char('0' + t.t_frac); }
+		else ssd1306tx_numdec(t.t_frac);
 		#else
 		uint16_t t = DS18B20_read(); ssd1306tx_numdec(t);
 		#endif
 
-		ssd1306_setpos(6*7, 0); ssd1306tx_string("'C");
+		ssd1306_setpos(6*7, 0); ssd1306tx_string(" 'C");
 
-		_delay_ms(2000 - TESTING_DELAY);
+		_delay_ms(5000 - TESTING_DELAY);
 	}
 
 	return 0; // Return the mandatory result value. It is "0" for success.
