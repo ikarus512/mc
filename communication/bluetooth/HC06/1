@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#hcitool scan
+### Scanning ...
+### 	98:D3:61:F9:34:FE	HC-06
+#sudo hcitool info 98:D3:61:F9:34:FE
+
+#sudo rfcomm release /dev/rfcomm0
+#sudo rfcomm bind /dev/rfcomm0 98:D3:61:F9:34:FE
+### Can't create device: Address already in use
+rfcomm
+### rfcomm0: 98:D3:61:F9:34:FE channel 1 clean
+
+sudo cutecom # Set speed=9600 or 38400, No line end, port=/dev/rfcomm0, press <open device>
