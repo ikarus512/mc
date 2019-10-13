@@ -1,0 +1,14 @@
+#sudo adduser $USER dialout
+#sudo apt install binutils gcc-avr avr-libc uisp avrdude flex byacc bison
+#sudo adduser $USER dialout
+sudo chmod a+rw /dev/ttyUSB0
+exit
+
+lsusb
+dmesg | grep 16c0
+echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0777\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0660\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+#echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+sudo mv 45-USBasp.rules /etc/udev/rules.d/45-USBasp.rules
+sudo service udev restart
