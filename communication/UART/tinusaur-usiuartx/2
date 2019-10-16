@@ -1,0 +1,3 @@
+
+#sudo apt install -y mercurial
+hg clone https://bitbucket.org/tinusaur/usiuartx

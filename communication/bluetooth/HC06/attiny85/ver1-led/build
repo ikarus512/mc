@@ -2,16 +2,17 @@
 #t=13   ; mcu=attiny${t}a ; F_CPU=1000000
 #t=2313 ; mcu=attiny${t}a ; F_CPU=14666667
 #t=85   ; mcu=attiny${t}  ; F_CPU=8000000
- t=85   ; mcu=attiny${t}  ; F_CPU=1000000
+#t=85   ; mcu=attiny${t}  ; F_CPU=1000000
+ t=45   ; mcu=attiny${t}  ; F_CPU=1000000
 
 clear
 rm -fr *.o *.elf *.hex
 
 ### compile, build, convert
-avr-gcc -g -Wall -std=c99 -Os -mmcu=$mcu -c $f.c -o $f.o -DF_CPU=$F_CPU -I. || exit 1
-avr-gcc -g                    -mmcu=$mcu    $f.o -o $f.elf                  || exit 1
-avr-objcopy -j .text -j .data -O ihex $f.elf $f.hex                         || exit 1
-avr-size -C --mcu=$mcu $f.elf                                               || exit 1
+avr-gcc -g -Wall -std=gnu99 -Os -mmcu=$mcu -c $f.c usiuartx.c -DF_CPU=$F_CPU -I. || exit 1
+avr-gcc -g                    -mmcu=$mcu    *.o -o $f.elf                    || exit 1
+avr-objcopy -j .text -j .data -O ihex $f.elf $f.hex                          || exit 1
+avr-size -C --mcu=$mcu $f.elf                                                || exit 1
 
 #exit
 

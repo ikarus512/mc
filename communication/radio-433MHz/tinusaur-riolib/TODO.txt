@@ -1,0 +1,7 @@
+TODO
+
+2018-07 (nb)
+
+- Implement the Check Sum part of the RIOLibC module.	(done)
+- Put code in repository.	(done)
+

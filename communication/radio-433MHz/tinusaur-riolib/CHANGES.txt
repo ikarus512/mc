@@ -1,0 +1,54 @@
+CHANGES
+
+
+2018-08-11 (nb)
+
+Renamed some of the testing scripts' folders.
+
+Renaming and refactoring - everything is a packet now, of type command or sensor.
+
+Improved testing scripts.
+
+Added new functions, improvements, bugfixes.
+
+- Added new function riolib_mod13 for super optimized calculating of modulus 13.
+- Added new function riolib_adler8 for calculating the Adler 8-bit check-sum.
+- Added more packet types constants.
+- Improved structure riolibc_command for the purposes of check-sum.
+- FIXED BUG: in function riolib_recv - wrong index max value.
+
+
+2018-07-31 (nb)
+
+Added rflinkc for commands handling. Renamed rflink_rcinit to rflink_rxinit. Added power on/off pin handling. Improved testing scripts.
+
+- Added power on/off pin handling.
+- Renamed function rflink_rcinit to rflink_rxinit.
+- Added rflinkc functions and data structures for commands handling.
+- Improved testing scripts.
+
+Changed the name from RFLink to RIOLib to avoid conflicts with other projects.
+
+Updated texts.
+
+Added testing scripts for the RIOLibC modules.
+
+Improved testing scripts for the RIOLibC modules.
+
+
+2018-07-22 (nb)
+
+Fixes and improvements in the send/recv functions:
+- Function rflink_send takes now "uint8_t *" as argument, was "char *" before.
+- Added new rflink_sendt function for text.
+- Function rflink_receive renamed to rflink_recv and takes now "uint8_t *" as argument, was "char *" before.
+- Improved rflink_recv function - much better timeout handling.
+
+Improved testing scripts.
+
+
+2018-07-17 (nb)
+
+Files added to the repository.
+
+

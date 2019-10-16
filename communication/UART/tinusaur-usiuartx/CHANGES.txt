@@ -1,0 +1,54 @@
+CHANGES
+
+
+2018-07-17 (nb)
+
+Small fixes in the code and in the texts.
+
+
+2017-04-11 (nb)
+
+IMPORTANT: Functions usiuartx_tx_has_data, usiuartx_rx_has_data return int now. New functions usiuartx_tx_ln, usiuartx_tx_stringln.
+
+- Functions usiuartx_tx_has_data, usiuartx_rx_has_data return int now.
+- New functions usiuartx_tx_ln, usiuartx_tx_stringln.
+
+
+2017-04-11 (nb)
+
+Fixed include path - removed "../".
+
+
+2017-04-11 (nb)
+
+Added usiuartx_echo2 testing project.
+
+
+2017-04-10 (nb)
+
+Small changes in the usiuartx_test1 testing project.
+
+
+2017-04-10 (nb)
+
+Added usiuartx_echo1 testing project.
+
+
+2017-04-09 (nb)
+
+Fixed TIMER0_SEED_COMPENSATION value. Source code reformatted and rearranged.
+
+- Fixed TIMER0_SEED_COMPENSATION value.
+- Source code reformatted and rearranged.
+
+
+2017-04-09 (nb)
+
+Added usiuartx_test1 testing project.
+
+
+2015-09-26 (nb)
+
+Files added to the repository.
+
+
