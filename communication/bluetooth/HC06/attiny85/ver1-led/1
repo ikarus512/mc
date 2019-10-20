@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
 
-#hcitool scan; exit
+### 1) pair device
+### 2) run: hcitool scan
+if [ 1 = 1 ];then
+    mac=
+    while [ "$mac" == "" ];do
+        a=$(hcitool scan); mac=$(echo "$a" | grep "HC-06" | grep -oP "\S+" | grep -v "HC-06")
+        if [ "$mac" == "" ];then echo "HC-06 not found, $(date)"; else echo "HC-06 found, mac=$mac"; fi
+        sleep 1s
+    done
+fi
 ### Scanning ...
 ### 	98:D3:61:F9:34:FE	HC-06
 #sudo hcitool info 98:D3:61:F9:34:FE
 
+### 3) re-bind port
 sudo rfcomm release /dev/rfcomm0
 sudo rfcomm bind /dev/rfcomm0 98:D3:61:F9:34:FE
 ### Can't create device: Address already in use
 rfcomm
 ### rfcomm0: 98:D3:61:F9:34:FE channel 1 clean
 
+### 4) run cutecom
 sudo cutecom & # Set speed=9600 or 38400, No line end, port=/dev/rfcomm0, press <open device>
