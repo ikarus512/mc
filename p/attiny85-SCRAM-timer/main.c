@@ -125,6 +125,7 @@ int main(void) {
 
 	// ---- Main Loop ----
 	for (;;) {
+		mainfunc();
 		// do nothing
 	}
 
