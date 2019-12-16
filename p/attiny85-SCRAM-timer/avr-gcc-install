@@ -5,12 +5,14 @@
 # in arduino ide, load ArduinoAsISP.ino to arduino (tools/Board:
 #  arduino nano, tools/processor:atmega128P old bootloader,
 #  tools/port: /dev/ttyUSB0)
-sudo usermod -a -G dialout $USER
+#sudo usermod -a -G dialout $USER
 #sudo adduser $USER dialout
 #sudo apt install binutils gcc-avr avr-libc uisp avrdude flex byacc bison
 #sudo adduser $USER dialout
-#sudo chmod a+rw /dev/ttyUSB0
-sudo chmod 777 /dev/ttyUSB0
+ls -l /dev/ttyA* /dev/ttyU*
+sudo chmod a+rw /dev/ttyUSB0
+sudo chmod a+rw /dev/ttyUSB1
+sudo chmod a+rw /dev/ttyUSB2
 exit
 
 lsusb
