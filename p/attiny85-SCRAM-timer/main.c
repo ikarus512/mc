@@ -125,7 +125,8 @@ int main(void) {
 
 	// ---- Main Loop ----
 	for (;;) {
-		mainfunc();
+//		mainfunc();
+// check if button pressed (without interrupts)
 		// do nothing
 	}
 

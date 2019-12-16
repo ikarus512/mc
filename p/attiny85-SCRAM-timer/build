@@ -15,12 +15,14 @@ avr-size -C --mcu=$mcu $f.elf                                               || e
 
 #exit
 
+ls /dev/ttyUSB*
+usb=/dev/ttyUSB0
 ### open usb port to not let arduino reset during programming
-if [ ! -e /dev/ttyUSB0 ];then exit 1; fi
+if [ ! -e $usb ];then exit 1; fi
 (python3 -c "import time; f=open('/dev/ttyUSB0'); SECs=20; time.sleep(SECs);" &);ps; sleep 2s
 
 ### programming
-#sudo avrdude -c usbasp -p t$t                          -u -U flash:w:$f.hex
-      avrdude -c avrisp -p t$t -P /dev/ttyUSB0 -b 19200 -u -U flash:w:$f.hex
+#sudo avrdude -c usbasp -p t$t                  -u -U flash:w:$f.hex
+      avrdude -c avrisp -p t$t -P $usb -b 19200 -u -U flash:w:$f.hex
 ls -l *.hex
 rm -frv *.hex *.o *.elf
