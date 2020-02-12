@@ -1,0 +1,82 @@
+#########################
+
+# vertices bottom
+v A1  -30 20  0
+v  B2 -20 10  10
+v  B3 -20 -10 10
+v A4  -30 -20 0
+v  B5 20  -10 10
+v A6  30  -20 0
+v  B7 20  10  10
+v A8  30  20  0
+
+# vertices bottom keyhole
+v A9  -13.5 2  0
+v A10 -13.5 -2 0
+v A11 -2    -2 0
+v A12 0     -3 0
+v A13 2     -2 0
+v A14 13.5  -2 0
+v A15 13.5  2  0
+v A16 2     2  0
+v A17 0     3  0
+v A18 -2    2  0
+
+# vertices upper
+v C2 -20 10  36
+v C3 -20 -10 36
+v C5 20  -10 36
+v C7 20  10  36
+
+# vertices upper keyhole
+v C9  -13.5 2  36
+v C10 -13.5 -2 36
+v C11 -2    -2 36
+v C12 0     -3 36
+v C13 2     -2 36
+v C14 13.5  -2 36
+v C15 13.5  2  36
+v C16 2     2  36
+v C17 0     3  36
+v C18 -2    2  36
+
+#########################
+
+# faces bottom
+A4 A10 A9 A1
+A6 A14 A13 A12 A4
+A4 A12 A11 A10
+A6 A8 A15 A14
+A1 A9 A18 A17 A8
+A8 A17 A16 A15
+
+# faces outside diag
+A1 B2 B3 A4
+A4 B3 B5 A6
+A6 B5 B7 A8
+A8 B7 B2 A1
+
+# faces outside vertic
+B3 C3 C5 B5
+B5 C5 C7 B7
+B7 C7 C2 B2
+
+# faces upper
+C2 C9 C10 C3
+C3 C10 C11 C12 C5
+C5 C12 C13 C14
+C5 C14 C15 C7
+C7 C15 C16 C17 C2
+C2 C17 C18 C9
+
+# faces inner
+A10 C10 C9 A9
+A9 C9 C18 A18
+A18 C18 C17 A17
+A17 C17 C16 A16
+A16 C16 C15 A15
+A15 C15 C14 A14
+A14 C14 C13 A13
+A13 C13 C12 A12
+A12 C12 C11 A11
+A11 C11 C10 A10

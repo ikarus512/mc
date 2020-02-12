@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+perl gcode-info.pl key-hole-fill.gcode

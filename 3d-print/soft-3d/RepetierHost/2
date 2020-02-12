@@ -1,0 +1,4 @@
+csc hello.cs
+mono hello.exe
+chmod 777 hello.exe
+./hello.exe

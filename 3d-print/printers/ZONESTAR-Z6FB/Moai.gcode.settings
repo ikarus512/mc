@@ -1,0 +1,156 @@
+{"extruder_quality": ["[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 0
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    bottom_layers = 4
+    default_material_print_temperature = 195
+    infill_pattern = grid
+    infill_sparse_density = 60
+    ironing_enabled = True
+    line_width = 0.35
+    material_diameter = 1.75
+    material_final_print_temperature = 195
+    material_initial_print_temperature = 195
+    optimize_wall_printing_order = True
+    retraction_amount = 10
+    skirt_gap = 15
+    skirt_line_count = 5
+    speed_ironing = 15
+    speed_layer_0 = 20
+    speed_print = 50
+    speed_travel = 70
+    speed_travel_layer_0 = 25
+    top_layers = 4
+    
+", "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 1
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    ironing_enabled = True
+    material_diameter = 1.75
+    retraction_amount = 10
+    
+", "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 2
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    material_diameter = 1.75
+    retraction_amount = 10
+    
+", "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 3
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    material_diameter = 1.75
+    retraction_amount = 10
+    
+", "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 4
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    material_diameter = 1.75
+    retraction_amount = 10
+    
+", "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 5
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    material_diameter = 1.75
+    retraction_amount = 10
+    
+", "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 6
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    material_diameter = 1.75
+    retraction_amount = 10
+    
+", "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    position = 7
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    material_diameter = 1.75
+    retraction_amount = 10
+    
+"], "global_quality": "[general]
+    version = 4
+    name = Printer Settings
+    definition = fdmprinter
+    
+    [metadata]
+    type = quality_changes
+    quality_type = draft
+    setting_version = 4
+    
+    [values]
+    adhesion_type = skirt
+    default_material_bed_temperature = 50
+    infill_extruder_nr = 0
+    material_bed_temperature = 50
+    wall_extruder_nr = 0
+    
+"}

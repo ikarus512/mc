@@ -1,0 +1,1 @@
+cat Moai.gcode | grep "SETTING_3" | perl -pe 's/^;SETTING_3 (.*)/$1/; s/\n//;' | perl -pe 's/\\\\n\n/\n/g; s/\\\\n"/\n"/g; s/\\\\n/\n    /g;' >Moai.gcode.settings
