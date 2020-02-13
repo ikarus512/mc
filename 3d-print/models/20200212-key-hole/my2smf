@@ -27,4 +27,3 @@ for f in $(ls *.my); do
     perl gcode-analyze.pl ${f//.my/.gcode} > ${f//.my/.gcode}.analysis
 
 done
-

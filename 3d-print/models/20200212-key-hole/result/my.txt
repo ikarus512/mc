@@ -1,0 +1,7 @@
+Printer ZONESTAR Z6FB.
+PLA D = 1.75 mm, extruder 200'C, bed 50'C.
+Model size = 60 x 40 x 36 mm.
+Layer height 0.2mm, fill density 75%.
+Weight = 0.028 kg.
+Fiament used L = 12.132 m.
+Print time T = 2 hours.
