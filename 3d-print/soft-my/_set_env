@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export MY_3D_PATH=$PWD
+export PATH=$MY_3D_PATH:$PATH

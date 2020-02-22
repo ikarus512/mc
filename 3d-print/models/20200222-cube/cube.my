@@ -1,0 +1,27 @@
+#########################
+
+# vertices bottom
+v A1 0   0  0
+v A2 10  0  0
+v A3 10 10  0
+v A4  0 10  0
+
+# vertices upper
+v B1  0  0 10
+v B2 10  0 10
+v B3 10 10 10
+v B4  0 10 10
+
+#########################
+
+# faces bottom
+A1 A2 A3 A4
+
+# faces vertical
+A1 B1 B2 A2
+A2 B2 B3 A3
+A3 B3 B4 A4
+A4 B4 B0 A0
+
+# faces upper
+B1 B4 B3 B2
