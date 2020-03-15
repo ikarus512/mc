@@ -1,9 +1,10 @@
-// Arduino Nano (as programmer):
+// Arduino Nano (as programmer) - ATtiny85 - ATtinyBoard:
+//   pin Vcc- Vcc
 //   pin GND- GND
-//   pin D2 - RESET,      pin Vcc - Vcc
-//   pin D3 - SCK
-//   pin D4 - MISO
-//   pin D5 - MOSI
+//   pin D2 - RESET				pin5
+//   pin D3 - SCK				pin2
+//   pin D4 - MISO				pin1
+//   pin D5 - MOSI				pin0
 
 //
 // ATtiny85 (as target):

@@ -1,0 +1,28 @@
+# On Ubuntu 16 or 18 LTS:
+# https://www.arduino.cc/en/Guide/Linux
+#sudo apt update
+#sudo apt-get install xz-utils
+#
+# Download arduino ide; tar -xf ide.tar.xz
+# in arduino ide, load ArduinoAsISP.ino to arduino (tools/Board:
+#  arduino nano, tools/processor:atmega128P old bootloader,
+#  tools/port: /dev/ttyUSB0)
+#
+#sudo usermod -a -G dialout $USER
+#sudo adduser $USER dialout
+#sudo apt install binutils gcc-avr avr-libc uisp avrdude flex byacc bison
+#sudo adduser $USER dialout
+ls -l /dev/ttyA* /dev/ttyU*
+sudo chmod a+rw /dev/ttyUSB0
+#sudo chmod a+rw /dev/ttyUSB1
+#sudo chmod a+rw /dev/ttyUSB2
+exit
+
+lsusb
+dmesg | grep 16c0
+echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0777\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0660\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+#echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+sudo mv 45-USBasp.rules /etc/udev/rules.d/45-USBasp.rules
+sudo service udev restart
