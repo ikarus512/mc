@@ -75,14 +75,14 @@ int main(void) {
 
 	// ---- CPU Frequency Setup ----
 	#if F_CPU == 1000000UL
-	#pragma message "F_CPU=1MHZ"
+		#pragma message "F_CPU=" XSTR(F_CPU) "HZ"
 		CLKPR_SET(CLKPR_1MHZ);
 	#elif F_CPU == 8000000UL
-	#pragma message "F_CPU=8MHZ"
+		#pragma message "F_CPU=" XSTR(F_CPU) "HZ"
 		CLKPR_SET(CLKPR_8MHZ);
 	#else
-	#pragma message "F_CPU=????"
-	#error "CPU frequency should be 1 MHz for DHT usage! (1 or 8 for ssd1306)"
+		#pragma message "F_CPU=????"
+		#error "CPU frequency should be 1 MHz for DHT usage! (1 or 8 for ssd1306)"
 	#endif
 
 // #define SSD1306_VDD //PB2
