@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export MY_3D_PATH=$PWD/../../soft-my
+export PATH=$MY_3D_PATH:$PATH
+
+#my2smf
+perl $MY_3D_PATH/my-shift.pl cube.my _00 x-20 y-20 z+0

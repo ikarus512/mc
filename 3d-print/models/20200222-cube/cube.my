@@ -21,7 +21,7 @@ A1 A2 A3 A4
 A1 B1 B2 A2
 A2 B2 B3 A3
 A3 B3 B4 A4
-A4 B4 B0 A0
+A4 B4 B1 A1
 
 # faces upper
 B1 B4 B3 B2

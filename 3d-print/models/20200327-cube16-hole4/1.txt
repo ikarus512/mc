@@ -1,0 +1,1 @@
+Filament required: 4*981.8mm (2.4cm3) + 8*1174.2mm (2.8cm3) === 13228.5mm (31.8cm3)

@@ -90,10 +90,12 @@ int main(void) {
 // DDRB |= (1 << PORT); //set port as output
 // PORTB |= (1 << PORT); // set to 1
 // PORTB &= ~(1 << PORT); // clear to 0
-#define PORT_SET(PORT)	  DDRB |= (1 << PORT); PORTB |= (1 << PORT);
-#define PORT_CLEAR(PORT)  DDRB |= (1 << PORT); PORTB &= ~(1 << PORT);
-PORT_SET(SSD1306_VDD);
-PORT_CLEAR(SSD1306_GND);
+#define PORT_SET(PORT)	  DDRB |= (1 << PORT); PORTB |= (1 << PORT)
+#define PORT_CLEAR(PORT)  DDRB |= (1 << PORT); PORTB &= ~(1 << PORT)
+// PORT_SET(SSD1306_VDD);
+// PORT_CLEAR(SSD1306_GND);
+#define PORT_INPUT_PULLUP(PORT) 		DDRB &= ~(1 << PORT); PORTB |= (1 << PORT)
+// PORT_INPUT_PULLUP(VOLTMETER_PIN);
 
 	voltmeterPinInit();
 
@@ -105,9 +107,9 @@ PORT_CLEAR(SSD1306_GND);
 
 	// ---- Main Loop ----
 	for (uint8_t i=0; ; i++) {
-		DRAW_STR(0, 0, "      ");
-  		uint16_t v = getVoltageMeasurement100() * 100;
+  		uint16_t v = getVoltageMeasurement100();// * 100;
 		char ssec[16]; usint2decascii(v, ssec); char* ssec1 = ssec;// + strlen(ssec) - 2;
+		DRAW_STR(0, 0, "          ");
 		DRAW_STR(0, 0, ssec1);
 		_delay_ms(100);
 

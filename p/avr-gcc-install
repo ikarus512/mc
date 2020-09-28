@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#sudo apt update; sudo apt install -y binutils gcc-avr avr-libc uisp avrdude flex byacc bison xz-utils
+sudo usermod -a -G dialout $USER
+sudo adduser $USER dialout
+ls -l /dev/ttyA* /dev/ttyU*
+sudo chmod a+rw /dev/ttyUSB0
+#sudo chmod a+rw /dev/ttyUSB1
+#sudo chmod a+rw /dev/ttyUSB2
+exit
+
+### Download arduino IDE
+### wget https://www.arduino.cc/download_handler.php?f=/arduino-1.8.13-linux64.tar.xz
+#curl -X GET -L https://www.arduino.cc/download_handler.php -o 1.htm
+f=http:$(cat 1.htm | perl -ne 'if(m/href="(\S*\.tar\S*)"/){print $1."\n";}' | grep linux64 | grep 1.8)
+f=$(echo $f | perl -pe 's/_handler//;')
+echo f=$f
+wget $f
+tar -xf $(ls *.tar.xz)
+
+# in arduino ide, load ArduinoAsISP.ino to arduino (tools/Board:
+#  arduino nano, tools/processor:atmega128P old bootloader,
+#  tools/port: /dev/ttyUSB0)
+
+exit
+
+lsusb
+dmesg | grep 16c0
+echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0777\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SYSFS{idVendor}==\"16c0\", SYSFS{idProduct}==\"05dc\", MODE=\"0660\", GROUP=\"users\"" >45-USBasp.rules
+#echo "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+#echo "ATTRS{idVendor}==\"16c0\", ATTRS{idProduct}==\"05dc\", GROUP=\"users\", MODE=\"0777\"" >45-USBasp.rules
+sudo mv 45-USBasp.rules /etc/udev/rules.d/45-USBasp.rules
+sudo service udev restart

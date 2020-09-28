@@ -6,6 +6,10 @@ use File::Slurp; ### sudo apt install -y libfile-slurp-perl
 
 if ($#ARGV + 1 < 1) { die "Not enough args. Usage: my2smf.pl file"; }
 my $if = $ARGV[0];
+my ($suffix, $shiftx, $shifty, $shiftz) = ($ARGV[1], $ARGV[2], $ARGV[3], $ARGV[4]);
+$shiftx =~ s/^.//;
+$shifty =~ s/^.//;
+$shiftz =~ s/^.//;
 my $of = $if; $of =~ s/.my$/.smf/;
 # print "Converting $if to $of\n";
 
@@ -41,32 +45,25 @@ for (my $i = 0; $i <= $#if; $i ++) {
     if ($if[$i] =~ m"^\s*v\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s*") { ### vertex
         my ($vname,$x,$y,$z) = ($1,$2,$3,$4);
         $iv = $iv + 1;
-        $vh{$vname} = $iv;
+        $vh{$vname} = $vname . $suffix; #$iv;
         # print "vertex $vh{$vname}: $vname, $x, $y, $z\n";
         my ($newx,$newy,$newz) = ($x,$y,$z);
         # ($newx,$newy,$newz) = ($newx - $minx, $newy - $miny, $newz - $minz);
-        print "v $newx $newy $newz\n";
+        ($newx,$newy,$newz) = ($newx + $shiftx, $newy + $shifty, $newz + $shiftz);
+
+        print "v $vh{$vname} $newx $newy $newz\n";
     } elsif ($if[$i] =~ m"^\s*([^v]\w+)\s+(\w+)\s+(\w+)\s*(#.*)?$") { ### 3-point face
         my ($v1,$v2,$v3) = ($1,$2,$3);
         # print "3-point face $if[$i]\n";
-        print "f $vh{$v1} $vh{$v2} $vh{$v3}\n";
-        #print "f $v3 $v2 $v1\n";
+        print "$vh{$v1} $vh{$v2} $vh{$v3}\n";
     } elsif ($if[$i] =~ m"^\s*([^v]\w+)\s+(\w+)\s+(\w+)\s+(\w+)\s*(#.*)?$") { ### 4-point face
         my ($v1,$v2,$v3,$v4) = ($1,$2,$3,$4);
         # print "4-point face $if[$i]\n";
-        print "f $vh{$v1} $vh{$v2} $vh{$v3}\n";
-        print "f $vh{$v1} $vh{$v3} $vh{$v4}\n";
-        #print "f $v3 $v2 $v1\n";
-        #print "f $v4 $v3 $v1\n";
+        print "$vh{$v1} $vh{$v2} $vh{$v3} $vh{$v4}\n";
     } elsif ($if[$i] =~ m"^\s*([^v]\w+)\s+(\w+)\s+(\w+)\s+(\w+)\s+(\w+)\s*(#.*)?$") { ### 5-point face
         my ($v1,$v2,$v3,$v4,$v5) = ($1,$2,$3,$4,$5);
         # # print "5-point face $if[$i]\n";
-        print "f $vh{$v1} $vh{$v2} $vh{$v3}\n";
-        print "f $vh{$v1} $vh{$v3} $vh{$v4}\n";
-        print "f $vh{$v1} $vh{$v4} $vh{$v5}\n";
-        #print "f $v3 $v2 $v1\n";
-        #print "f $v4 $v3 $v1\n";
-        #print "f $v5 $v4 $v1\n";
+        print "$vh{$v1} $vh{$v2} $vh{$v3} $vh{$v4} $vh{$v5}\n";
     } else {
         print "$if[$i]\n";
     }

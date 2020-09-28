@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+export MY_3D_PATH=$PWD/../../soft-my
+export PATH=$MY_3D_PATH:$PATH
+
+f=m1.m
+echo >$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _10 x-20 y-20 z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _20 x-0  y-20 z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h10.my _30 x+20 y-20 z+0 >>$f
+
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _11 x-20 y-0  z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _21 x-0  y-0  z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h10.my _31 x+20 y-0  z+0 >>$f
+
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _12 x-20 y+20 z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _22 x-0  y+20 z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h10.my _32 x+20 y+20 z+0 >>$f
+
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _13 x-20 y+40 z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h12.my _23 x-0  y+40 z+0 >>$f
+perl $MY_3D_PATH/my-shift.pl old/cube16-hole4-h10.my _33 x+20 y+40 z+0 >>$f
+
+perl $MY_3D_PATH/my-sort.pl $f >m1.my
+
+my2smf

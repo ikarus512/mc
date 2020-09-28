@@ -3,7 +3,7 @@
 #t=2313 ; mcu=attiny${t}a ; F_CPU=14666667
 #t=85   ; mcu=attiny${t}  ; F_CPU=8000000
  t=85   ; mcu=attiny${t}  ; F_CPU=1000000
-t=45   ; mcu=attiny${t}  ; F_CPU=1000000
+#t=45   ; mcu=attiny${t}  ; F_CPU=1000000
 
 clear
 rm -fr *.o *.elf *.hex
