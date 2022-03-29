@@ -4,11 +4,11 @@
 # Note: build and meta directories will be created/cloned in $PWD/
 
 set -e
-#git clone -b rocko https://git.openembedded.org/openembedded-core openembedded-core
-#git clone -b rocko https://git.openembedded.org/meta-openembedded
-#git clone -b rocko https://git.yoctoproject.org/poky && cp -r poky/bitbake openembedded-core/
-#git clone https://github.com/shagu/meta-teapot.git
-#cp -fv meta-teapot/conf/machine/orangepizero.conf meta-teapot/conf/machine/bananapizero.conf
+git clone -b rocko https://git.openembedded.org/openembedded-core openembedded-core
+git clone -b rocko https://git.openembedded.org/meta-openembedded
+git clone -b rocko https://git.yoctoproject.org/poky && cp -r poky/bitbake openembedded-core/
+git clone https://github.com/shagu/meta-teapot.git
+cp -fv meta-teapot/conf/machine/orangepizero.conf meta-teapot/conf/machine/bananapizero.conf
 
 # bison patch
 p=110-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/bison/bison/

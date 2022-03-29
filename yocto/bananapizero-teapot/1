@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+t0=$(timestamp)
+./mybuild 2>&1 | tee $(timestamp).log
+t1=$(timestamp)
+echo t0=$t0
+echo t1=$t1
