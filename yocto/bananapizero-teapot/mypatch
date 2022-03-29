@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# bison
+p=patches/110-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/bison/bison/
+f=openembedded-core/meta/recipes-devtools/bison/bison_3.0.4.bb
+if [ ! -f $f.old ]; then cp $f $f.old
+    cat $f.old | perl -pe 's#(file://0001-src-local.mk-fix-parallel-issue.patch \\)#$1\n    file://110-glibc-change-work-around.patch \\#;' >$f
+fi
+
+# m4
+p=patches/m4-1.4.18-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/m4/m4
+f=openembedded-core/meta/recipes-devtools/m4/m4-1.4.18.inc
+if [ ! -f $f.old ]; then cp $f $f.old
+    cat $f.old | perl -pe 's#(file://remove-gets.patch \\)#$1\n    file://m4-1.4.18-glibc-change-work-around.patch \\#;' >$f
+fi

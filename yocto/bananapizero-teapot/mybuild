@@ -4,18 +4,12 @@
 # Note: build and meta directories will be created/cloned in $PWD/
 
 set -e
-git clone -b rocko https://git.openembedded.org/openembedded-core openembedded-core
-git clone -b rocko https://git.openembedded.org/meta-openembedded
-git clone -b rocko https://git.yoctoproject.org/poky && cp -r poky/bitbake openembedded-core/
-git clone https://github.com/shagu/meta-teapot.git
-cp -fv meta-teapot/conf/machine/orangepizero.conf meta-teapot/conf/machine/bananapizero.conf
-
-# bison patch
-p=110-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/bison/bison/
-f=openembedded-core/meta/recipes-devtools/bison/bison_3.0.4.bb
-if [ ! -f $f.old ]; then cp $f $f.old
-    cat $f.old | perl -pe 's#(file://0001-src-local.mk-fix-parallel-issue.patch \\)#$1\n    file://110-glibc-change-work-around.patch \\#;' >$f
-fi
+#git clone -b rocko https://git.openembedded.org/openembedded-core openembedded-core
+#git clone -b rocko https://git.openembedded.org/meta-openembedded
+#git clone -b rocko https://git.yoctoproject.org/poky && cp -r poky/bitbake openembedded-core/
+#git clone https://github.com/shagu/meta-teapot.git
+#cp -fv meta-teapot/conf/machine/orangepizero.conf meta-teapot/conf/machine/bananapizero.conf
+./mypatch
 
 
 source openembedded-core/oe-init-build-env    build    # == "mkdir -p build; cd build"
