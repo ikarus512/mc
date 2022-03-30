@@ -1,15 +1,38 @@
 #!/usr/bin/env bash
 
 # bison
-p=patches/110-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/bison/bison/
+p=patches/bison/110-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/bison/bison/
 f=openembedded-core/meta/recipes-devtools/bison/bison_3.0.4.bb
 if [ ! -f $f.old ]; then cp $f $f.old
     cat $f.old | perl -pe 's#(file://0001-src-local.mk-fix-parallel-issue.patch \\)#$1\n    file://110-glibc-change-work-around.patch \\#;' >$f
 fi
 
 # m4
-p=patches/m4-1.4.18-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/m4/m4
+p=patches/m4/m4-1.4.18-glibc-change-work-around.patch; cp $p openembedded-core/meta/recipes-devtools/m4/m4
 f=openembedded-core/meta/recipes-devtools/m4/m4-1.4.18.inc
 if [ ! -f $f.old ]; then cp $f $f.old
     cat $f.old | perl -pe 's#(file://remove-gets.patch \\)#$1\n    file://m4-1.4.18-glibc-change-work-around.patch \\#;' >$f
 fi
+
+
+v=thud
+for p in glib-2.0 elfutils qemu; do
+    for d in $(ls openembedded-core/meta | grep recipes);do
+        if [ -d openembedded-core/meta/$d/$p ]; then
+            echo "    openembedded-core-$v/meta/$d/$p"
+            rm -fr openembedded-core/meta/$d/$p
+            cp -fr openembedded-core-$v/meta/$d/$p openembedded-core/meta/$d/
+        fi
+    done
+done
+
+v=sumo
+for p in glibc libsdl2; do
+    for d in $(ls openembedded-core/meta | grep recipes);do
+        if [ -d openembedded-core/meta/$d/$p ]; then
+            echo "    openembedded-core-$v/meta/$d/$p"
+            rm -fr openembedded-core/meta/$d/$p
+            cp -fr openembedded-core-$v/meta/$d/$p openembedded-core/meta/$d/
+        fi
+    done
+done

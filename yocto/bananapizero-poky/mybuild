@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+#git clone -b hardknott https://git.yoctoproject.org/poky
+
+source poky/oe-init-build-env    build
+
+f=conf/local.conf
+if [ ! -f $f.old ]; then cp $f $f.old
+    cat $f.old | grep -v MACHINE; echo 'MACHINE ?= "beaglebone-yocto"' >>$f
+fi
+
+f=conf/bblayers.conf
+if [ ! -f $f.old ]; then cp $f $f.old
+    cat <<- '__EOF' > $f
+	# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+	# changes incompatibly
+	POKY_BBLAYERS_CONF_VERSION = "2"
+
+	BBPATH = "${TOPDIR}"
+	BBFILES ?= ""
+
+	BBLAYERS ?= " \
+	  ${TOPDIR}/../poky/meta \
+	  ${TOPDIR}/../poky/meta-poky \
+	  ${TOPDIR}/../poky/meta-yocto-bsp \
+	  "
+	__EOF
+fi
+
+bitbake -k core-image-minimal
+#bitbake core-image-minimal

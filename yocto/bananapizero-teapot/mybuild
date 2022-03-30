@@ -4,11 +4,13 @@
 # Note: build and meta directories will be created/cloned in $PWD/
 
 set -e
+#git clone -b thud https://git.openembedded.org/openembedded-core openembedded-core-sumo
 #git clone -b rocko https://git.openembedded.org/openembedded-core openembedded-core
 #git clone -b rocko https://git.openembedded.org/meta-openembedded
-#git clone -b rocko https://git.yoctoproject.org/poky && cp -r poky/bitbake openembedded-core/
+#git clone -b thud https://git.yoctoproject.org/poky && cp -r poky/bitbake openembedded-core/
 #git clone https://github.com/shagu/meta-teapot.git
 #cp -fv meta-teapot/conf/machine/orangepizero.conf meta-teapot/conf/machine/bananapizero.conf
+cp -frv meta-teapot/recipes-bsp/linux/linux-stable/orangepizero meta-teapot/recipes-bsp/linux/linux-stable/bananapizero
 ./mypatch
 
 
@@ -41,4 +43,5 @@ cat <<- '__EOF' > $f
 __EOF
 fi
 
-MACHINE=bananapizero bitbake base-image
+MACHINE=bananapizero bitbake -k base-image
+#MACHINE=bananapizero bitbake base-image
