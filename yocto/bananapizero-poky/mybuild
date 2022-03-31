@@ -27,5 +27,7 @@ if [ ! -f $f.old ]; then cp $f $f.old
 	__EOF
 fi
 
-bitbake -k core-image-minimal
+#bitbake -k core-image-minimal
 #bitbake core-image-minimal
+#runqemu beaglebone-yocto  #login as root
+#cd tmp/deploy/images/beaglebone-yocto; sudo dd if=core-image-minimal-beaglebone-yocto.wic of=/dev/sdX bs=1M status=progress; eject /dev/sdX
