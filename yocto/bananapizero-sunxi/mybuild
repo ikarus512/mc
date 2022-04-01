@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+#set -e
+#git clone -b hardknott https://git.yoctoproject.org/poky
+#git clone -b hardknott https://github.com/linux-sunxi/meta-sunxi
+#git clone -b hardknott https://git.openembedded.org/meta-openembedded
+
+source poky/oe-init-build-env    build
+
+#MACHINE=orange-pi-zero # Allwinner H2+ CPU
+MACHINE=bananapi-m2plus # Allwinner H3 CPU
+IMAGE=core-image-minimal
+
+
+f=conf/local.conf
+if [ ! -f $f.old ]; then cp $f $f.old; fi
+cat $f.old | grep -vP "MACHINE|DISTRO|EXTRA_IMAGE_FEATURES|IMAGE_FSTYPES" >$f
+echo >>$f
+echo 'DISTRO = "poky"' >>$f
+echo "MACHINE = \"$MACHINE\"" >>$f
+echo 'IMAGE_FSTYPES += "wic wic.bmap"' >>$f
+echo 'EXTRA_IMAGE_FEATURES = "debug-tweaks"' >>$f    ### (debug only) allow ssh login with empty password
+#echo 'XZ_DEFAULTS = "--memlimit=1500MiB"' >>$f
+
+
+#f=./../poky/meta/recipes-bsp/formfactor/files/config
+DISPLAY_WIDTH_PIXELS=1920
+DISPLAY_HEIGHT_PIXELS=1080
+
+
+f=conf/bblayers.conf
+if [ ! -f $f.old ]; then cp $f $f.old; fi
+cat <<- '__EOF' > $f
+	# POKY_BBLAYERS_CONF_VERSION is increased each time build/conf/bblayers.conf
+	# changes incompatibly
+	POKY_BBLAYERS_CONF_VERSION = "2"
+
+	BBPATH = "${TOPDIR}"
+	BBFILES ?= ""
+
+	BBLAYERS ?= " \
+	  ${TOPDIR}/../poky/meta \
+	  ${TOPDIR}/../poky/meta-poky \
+	  ${TOPDIR}/../poky/meta-yocto-bsp \
+	  ${TOPDIR}/../meta-openembedded/meta-oe \
+	  ${TOPDIR}/../meta-sunxi \
+	  "
+	__EOF
+
+
+
+#bitbake -c menuconfig virtual/kernel    # configure kernel before build
+
+#bitbake -k $IMAGE
+#bitbake $IMAGE
+#runqemu $MACHINE  #login as root
+
+echo
+echo "=== How to write:"
+f=tmp/deploy/images/$MACHINE/$IMAGE-$MACHINE; wic=$f.wic; img=$f.sunxi-sdimg
+ls $wic $img -l
+echo sudo dd if=build/$img of=/dev/sdX bs=1M status=progress
+echo sudo bmaptool copy build/$wic /dev/sdX
+#echo oe-run-native bmap-tools-native bmaptool copy $wic /dev/sdX
+#echo eject /dev/sdX
+#wic ls $wic
